@@ -18,8 +18,9 @@ public class TestSort {
 	public static void main(String[] args) {
 		 int SIZE = 5000000;
 		 calcTime("threadStart",SIZE);
-		 calcTime("nomalStart",SIZE);
-		 calcTime("arithmetic",SIZE);
+//		 calcTime("nomalStart",SIZE);
+//		 calcTime("arithmetic",SIZE);
+		 calcTime("quickSort",SIZE);
 	}
 	
 	
@@ -72,9 +73,32 @@ public class TestSort {
 	    for (int i = 0; i < SIZE; i++) {  
 	        array[i] = rnd.nextInt();  
 	    }  
-	    Arrays.sort(array);  
-//	    SortTask s = new SortTask(array);
-//	    s.compute(array, 0, array.length-1);
+//	    Arrays.sort(array);  
+	    /**
+	     * 冒泡排序
+	     * 
+	     */
+//	    for(int i = 0;i<array.length;i++){
+//	    	for(int j = 1;j<i;j++){
+//	    		if(array[j-1]<array[j]){
+//	    			long t = array[j];
+//	    			array[j] = array[j-1];
+//	    			array[j-1] = t;
+//	    		}
+//	    	}
+//	    }
+	    /**
+	     * 选择排序
+	     */
+	    for(int i = 0;i<array.length;i++){
+	    	for(int j = 1;j<i;j++){
+	    		if(array[j]<array[i]){
+	    			long t = array[j];
+	    			array[j] = array[i];
+	    			array[i] = t;
+	    		}
+	    	}
+	    }
 	}
 	public void arithmetic(Integer SIZE){
 		Random rnd = new Random();  
@@ -85,5 +109,10 @@ public class TestSort {
 //	    Arrays.sort(array);  
 		SortTask s = new SortTask(array);
 		s.compute(array, 0, array.length-1);
+	}
+	public void quickSort(Integer SIZE){
+		QuickSort s = new QuickSort(QuickSort.initArray(SIZE));
+		s.compute();
+//		s.print();
 	}
 }
