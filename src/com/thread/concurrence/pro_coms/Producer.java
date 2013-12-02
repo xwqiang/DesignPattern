@@ -1,6 +1,5 @@
 package com.thread.concurrence.pro_coms;
 
-import java.util.concurrent.TimeUnit;
 
 
 public class Producer implements Runnable{
