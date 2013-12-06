@@ -10,7 +10,7 @@ public class GroupIndexAndStartEndIndexTest {
 * @param args
 */
 public static void main(String[] args) {
-   // TODO Auto-generated method stub
+   // TODO Auto-generated method stub test
    String str = "Hello,World! in Java.";
    Pattern pattern = Pattern.compile("W(or)(ld!)");
    Matcher matcher = pattern.matcher(str);
