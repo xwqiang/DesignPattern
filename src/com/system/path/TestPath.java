@@ -17,8 +17,10 @@ public class TestPath {
 	public static void main(String[] args) {
 		String path = System.getProperty("user.home");
 		String path1 = System.getProperty("user.dir");
+		String path3 = System.getProperty("file.separator");
 		System.out.println(path);
 		System.out.println(path1);
+		System.out.println(path3);
 		
 		
 		List<String> list = new ArrayList<String>();
