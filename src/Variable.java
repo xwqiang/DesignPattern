@@ -3,5 +3,7 @@ public class Variable extends Expression {
 		// this为调用interpret方法的Variable对象
 		
 		return con.LookupValue(this);
+		
+		
 	}
 }
