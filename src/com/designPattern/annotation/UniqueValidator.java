@@ -28,7 +28,7 @@ public class UniqueValidator extends Validator{
       }
     } catch (Exception e) {
       System.out.println(e.getMessage());
-      throw new ValidationException(e.getMessage());
+//      throw new ValidationException(e.getMessage());
     }
   }
 

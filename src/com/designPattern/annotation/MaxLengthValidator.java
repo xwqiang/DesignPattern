@@ -19,7 +19,7 @@ public class MaxLengthValidator extends Validator {
                 }
             }
         } catch (Exception e) {
-            throw new ValidationException(e.getMessage());
+//            throw new ValidationException(e.getMessage());
 
         }
     }
