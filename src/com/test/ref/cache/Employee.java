@@ -39,18 +39,5 @@ public class Employee {
 	public void setOrigin(String origin) {
 		this.origin = origin;
 	}
-	public static void main(String[] a){
-		EmployeeCache cache = EmployeeCache.getInstance();
-		for(int i=0;i<=1000000000;i++){
-			cache.getEmployee("DFSJ"+i);
-		}
-		
-		/*Hashtable<String, Employee> t = new Hashtable<String,Employee>();
-		for(int i=0;i<=10000000;i++){
-			t.put("dddd"+i, new Employee("d"));
-		}*/
-		
-		cache.getEmployee("DFSJ2323232");
-		System.out.println("over.");
-	}
+	
 }

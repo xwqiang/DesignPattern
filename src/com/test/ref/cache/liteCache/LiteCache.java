@@ -1,13 +1,14 @@
-package com.test.ref;
+package com.test.ref.cache.liteCache;
 
-import java.lang.ref.Reference;
 import java.lang.ref.ReferenceQueue;
 import java.util.Hashtable;
 
-public class HSKJCache<T extends IKeyValue> {
+import com.test.ref.Page;
+
+public class LiteCache<T> {
 	private Hashtable<String, CacheRef<T>> refs;// 用于Chche内容的存储
 	private ReferenceQueue<T> queue;// 垃圾Reference的队列
-	public HSKJCache(){
+	public LiteCache(){
 		this.refs = new Hashtable<String,CacheRef<T>>();
 		this.queue = new ReferenceQueue<T>();
 	}
@@ -15,18 +16,27 @@ public class HSKJCache<T extends IKeyValue> {
 		return refs.size();
 	}
 	public void put(T t){
-		clean();
+		cleanCache();
 		CacheRef<T> cacheRef = new CacheRef<T>(t,queue);
-		refs.put(t.getKey(), cacheRef);
+		refs.put(cacheRef.getKey(), cacheRef);
 	}
-	private void clean(){
+	@SuppressWarnings("unchecked")
+	private void cleanCache(){
+		System.out.println(refs.size());
 		CacheRef<T> obj = null;
-		while ((obj = (CacheRef<T>) queue.poll()) != null) {
-			
-			System.out.println(obj.get()+"..........");
+		System.out.println(queue.poll());
+		while ((obj =  (CacheRef<T>) queue.poll()) != null) {
+			System.out.println(obj.get()+".........."+obj.getKey());
 			obj.get();
-			refs.remove(obj.get().getKey());
+			refs.remove(obj.getKey());
 		}
+	}
+	
+	public void clearCache() {
+		cleanCache();
+		refs.clear();
+		System.gc();
+		System.runFinalization();
 	}
 	public T get(String key){
 		if(refs.get(key)==null){
@@ -34,18 +44,17 @@ public class HSKJCache<T extends IKeyValue> {
 		}
 		return refs.get(key).get();
 	}
-	public static void main(String[] a ){
-		/*Map<String,Page> map = new HashMap<String,Page>();
-		for(int i = 0 ;i<1000000000;i++){
-			map.put(i+"dd",new Page(){{add("dd");}});
-		}*/
+	public static void main(String[] args ){
 		
-		HSKJCache<Page> c = new HSKJCache<Page>();
+		LiteCache<Page> c = new LiteCache<Page>();
 		try {
 			for(int i = 0 ;i<1000000000;i++){
 				Page p = new Page();
 				p.add(i+"ss");
 				c.put(p);
+				c.get("p:["+i+"ss]");
+				
+				
 			}
 		} catch (RuntimeException e) {
 			System.out.println(c.size());

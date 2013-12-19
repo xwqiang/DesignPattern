@@ -35,7 +35,7 @@ public class EmployeeCache {
 	}
 
 	// 以软引用的方式对一个Employee对象的实例进行引用并保存该引用
-	private void cacheEmployee(Employee em) {
+	public void cacheEmployee(Employee em) {
 		cleanCache();// 清除垃圾引用
 		EmployeeRef ref = new EmployeeRef(em, q);
 		employeeRefs.put(em.getID(), ref);
@@ -53,7 +53,7 @@ public class EmployeeCache {
 		// 并保存对这个新建实例的软引用
 		if (em == null) {
 			em = new Employee(ID);
-//			System.out.println("Retrieve From EmployeeInfoCenter. ID=" + ID);
+			System.out.println("Retrieve From EmployeeInfoCenter. ID=" + ID);
 			this.cacheEmployee(em);
 		}
 		return em;
@@ -73,5 +73,21 @@ public class EmployeeCache {
 		employeeRefs.clear();
 		System.gc();
 		System.runFinalization();
+	}
+	
+	public static void main(String[] a){
+		EmployeeCache cache = EmployeeCache.getInstance();
+		for(int i=0;i<=1000000000;i++){
+			Employee em = new Employee(i+"");
+			cache.cacheEmployee(em);
+		}
+		
+		/*Hashtable<String, Employee> t = new Hashtable<String,Employee>();
+		for(int i=0;i<=10000000;i++){
+			t.put("dddd"+i, new Employee("d"));
+		}*/
+		
+		cache.getEmployee("2323232");
+		System.out.println("over.");
 	}
 }
