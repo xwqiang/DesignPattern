@@ -20,8 +20,5 @@ public class Test {
 		}
 		
 	}
-	public static String get(int i){
-		if(map.get(i))
-	}
 
 }
