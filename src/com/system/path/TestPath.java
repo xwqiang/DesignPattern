@@ -35,6 +35,8 @@ public class TestPath {
 		/**
 		 * 根据cpu数 来决定线程池的大小
 		 */
+		
+		
 		int POOL_SIZE = 5;
 		int cpuNums = Runtime.getRuntime().availableProcessors();
 		ExecutorService executorService =Executors.newFixedThreadPool(cpuNums * POOL_SIZE);

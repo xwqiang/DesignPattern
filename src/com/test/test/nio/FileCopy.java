@@ -7,7 +7,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
-import java.security.AccessController;
 
 public class FileCopy {
 	static File f = new File("e:/iotest/iotest.zip");
